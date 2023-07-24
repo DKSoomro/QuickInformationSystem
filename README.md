@@ -1,4 +1,4 @@
-# QuickInformationSystem
+# Quick Information System
 This web application is built in Core PHP. It is a complete information system where Teacher, Students &amp; staff from an institute can share post &amp; at once it will show posts accordingly to the desired users &amp; also chat with me. It has all the CRUD functionalities. Languages used in this projects are HTML, CSS, Bootstrap, jQuery, PHP &amp; others
 
 # Landing Page
