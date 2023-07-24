@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<?php
+include("includes/connection.php");
+
+?>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+	<title>Student Registration Form</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="icon" type="image/png" href="assets/images/iict.jpg">
+
+	<link rel="stylesheet" type="text/css" href="assets/css/stdRegistration-style.css">
+</head>
+
+<body>
+	<a href="index.php"><img class="backimg img-fluid" src="assets/images/back.png"></a> <!-- back icon -->
+	<div class="container">
+		<!-- container start -->
+		<div class="box">
+			<!-- box start -->
+			<div class="row stdregistration-form">
+				<!-- Student Registration complete form coding starrt here -->
+				<div class="col-lg-6 studentform-imgArea">
+					<!-- image area of student registration form -->
+					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+							<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+							<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img class="d-block w-100" src="assets/images/stdimg2.png" alt="First slide">
+							</div>
+							<div class="carousel-item">
+								<img class="d-block w-100" src="assets/images/stdimg1.png" alt="Second slide">
+							</div>
+							<div class="carousel-item">
+								<img class="d-block w-100" src="assets/images/stdimg3.png" alt="Third slide">
+							</div>
+						</div>
+						<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
+						</a>
+					</div>
+				</div> <!-- image area of student registration form end here -->
+
+				<div class="col-lg-6 studentform-formArea">
+					<!-- form area code here -->
+					<h1 class="headingstdform">SIGN UP FOR STUDENT</h1>
+					<form class="form-forStd-registration" method="POST">
+
+						<div class="form-row">
+							<!-- full.name -->
+							<div class="form-group col-md-6">
+								<input type="text" class="form-control formforstd" placeholder="Full Name" name="u_name" required>
+							</div>
+							<div class="form-group col-md-6">
+								<select class="custom-select stdpart" name="u_disc" required>
+									<option selected="true" disabled="disabled">Select Discipline</option>
+									<option>BS SWE</option>
+									<option>BS ELE</option>
+									<option>BS IT</option>
+									<option>BS TEL</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="form-row">
+							<!-- phone no & email -->
+							<div class="form-group col-md-6">
+								<input type="text" class="form-control formforstd" placeholder="Phone no ( 03000000000)" name="u_phone" id="u_phone" required>
+							</div>
+							<div class="form-group col-md-6">
+								<input type="email" class="form-control formforstd" id="inputEmail4" placeholder="Email" required name="u_email">
+							</div>
+						</div>
+
+						<div class="form-row">
+							<!-- password n cnfrm password start -->
+							<div class="form-group col-md-6">
+								<input type="password" class="form-control formforstd" id="inputPassword4" placeholder="Password" name="u_pass" required>
+							</div>
+							<div class="form-group col-md-6">
+								<input type="password" class="form-control formforstd" id="inputPassword4" placeholder="Confirm password" name="u_pass2" required>
+							</div>
+						</div> <!-- password n cnfrm password end -->
+
+						<div class="form-row">
+							<!-- shift and roll no start -->
+							<div class="form-group col-md-6">
+								<input type="tel" class="form-control formforstd" name="u_reg" pattern="[0-9]{1}[a-z]{1}[0-9]{2}/[a-z]{3}/[0-9]{3}" required placeholder="Roll No(2k16/SWE/105)" name="u_reg">
+
+							</div>
+							<div class="form-group col-md-6 std-shift">
+								<div class="stdform-shift custom-control custom-radio custom-control-inline">
+									<input type="radio" id="customRadioInline1" class="custom-control-input" name="u_shift" value="Morning" required>
+									<label class="custom-control-label" for="customRadioInline1">Morning</label>
+								</div>
+								<div class="stdform-shift custom-control custom-radio custom-control-inline">
+									<input type="radio" id="customRadioInline2" class="custom-control-input" name="u_shift" value="Evening" required>
+									<label class="custom-control-label" for="customRadioInline2">Evening</label>
+								</div>
+							</div>
+						</div> <!-- shift and roll no end -->
+
+						<div class="form-row">
+							<!-- part and semster start -->
+							<div class="form-group col-md-6">
+								<select class="custom-select stdpart" name="u_year" required>
+									<option selected="true" disabled="disabled">Select year</option>
+									<?php global $con;
+									$get_classes = "Select * from user_category where user_cat_id != 1 AND user_cat_id != 2 AND user_cat_id != 7";
+									$run_classes = mysqli_query($con, $get_classes);
+									while ($row = mysqli_fetch_array($run_classes)) {
+										$user_cat_id = $row['user_cat_id'];
+										$user_cat_name = $row['user_cat_name'];
+										echo "<option value = '$user_cat_id'>$user_cat_name</option>";
+									} ?>
+								</select>
+							</div>
+							<div class="form-group col-md-6">
+								<select class="custom-select stdsemster" name="u_semester" required='required'>
+									<option selected="true" disabled="disabled">Select Semester</option>
+									<option value="1st Semster">1st Semster</option>
+									<option value="2nd Semster">2nd Semster</option>
+								</select>
+							</div>
+						</div> <!-- part and semster end -->
+
+						<div class="form-group col-md-6">
+							<!-- select gender start -->
+							<div class="stdform-gender custom-control custom-radio">
+								<input type="radio" id="customRadio1" name="u_gender" class="custom-control-input" value="Male" required='required'>
+								<label class="custom-control-label" for="customRadio1">Male</label>
+							</div>
+							<div class="stdform-gender custom-control custom-radio">
+								<input type="radio" id="customRadio2" name="u_gender" class="custom-control-input" value="Female" required='required'>
+								<label class="custom-control-label" for="customRadio2">Female</label>
+							</div>
+						</div> <!-- select gender end -->
+
+						<button type="submit" class="stdform btn btn-block btn-primary" name="sign_up" value="Submit">SIGN UP</button> <!-- btn for sign-up -->
+					</form>
+					<?php include("insert_student.php"); ?>
+				</div> <!-- form area code end here -->
+			</div> <!-- Student Registration complete form coding end here -->
+		</div> <!-- box end  -->
+	</div> <!-- container end -->
+
+
+	<!-- // Restricts input for the given textbox to the given inputFilter function. -->
+	<script>
+		setInputFilter(document.getElementById("u_phone"), function(value) {
+			return /^\d*\.?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
+		});
+
+		function setInputFilter(textbox, inputFilter) {
+			["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+				textbox.addEventListener(event, function() {
+					if (inputFilter(this.value)) {
+						this.oldValue = this.value;
+						this.oldSelectionStart = this.selectionStart;
+						this.oldSelectionEnd = this.selectionEnd;
+					} else if (this.hasOwnProperty("oldValue")) {
+						this.value = this.oldValue;
+						this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+					} else {
+						this.value = "";
+					}
+				});
+			});
+		}
+	</script>
+	<!-- links copy from bootstrap web for slider and other use -->
+	<!-- jquery and javascript links -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
