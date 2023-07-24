@@ -1,5 +1,6 @@
 # QuickInformationSystem
 This web application is built in Core PHP. It is a complete information system where Teacher, Students &amp; staff from an institute can share post &amp; at once it will show posts accordingly to the desired users &amp; also chat with me. It has all the CRUD functionalities. Languages used in this projects are HTML, CSS, Bootstrap, jQuery, PHP &amp; others
+
 ![Web capture_19-7-2023_161449_](https://github.com/DKSoomro/QuickInformationSystem/assets/35255792/3efb9c84-78b6-408a-b8ee-bd58cf12f27f)
 # Select role for registeration
 ![Screenshot 2023-07-24 215856](https://github.com/DKSoomro/QuickInformationSystem/assets/35255792/d4159318-8587-40af-bc96-1aebb0d69c04)
